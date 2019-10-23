@@ -17,7 +17,6 @@ public class Main {
         p.setName("Tenis");
         p.setDescription("Tenis de corrida");
 
-
         em.persist(p);
 
         em.close();
