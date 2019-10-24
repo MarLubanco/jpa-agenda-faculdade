@@ -1,6 +1,7 @@
 package entities;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Phone {
@@ -11,24 +12,19 @@ public class Phone {
 
     private String numero;
 
-    @ManyToOne
-    private Contact contact;
+    @ManyToMany
+    @JoinTable(name="phones_contacts", joinColumns=
+            {@JoinColumn(name="phone_id")}, inverseJoinColumns=
+            {@JoinColumn(name="contact_id")})
+    private List<Contact> contacts;
 
-    public Phone(Integer id, String numero, Contact contact) {
+    public Phone(Integer id, String numero, List<Contact> contacts) {
         this.id = id;
         this.numero = numero;
-        this.contact = contact;
+        this.contacts = contacts;
     }
 
     public Phone() {
-    }
-
-    public Contact getContact() {
-        return contact;
-    }
-
-    public void setContact(Contact contact) {
-        this.contact = contact;
     }
 
     public Integer getId() {
@@ -45,5 +41,13 @@ public class Phone {
 
     public void setNumero(String numero) {
         this.numero = numero;
+    }
+
+    public List<Contact> getContacts() {
+        return contacts;
+    }
+
+    public void setContacts(List<Contact> contacts) {
+        this.contacts = contacts;
     }
 }

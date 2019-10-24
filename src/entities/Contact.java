@@ -19,15 +19,19 @@ public class Contact {
 
     private String email;
 
-    @ManyToMany
+    @ManyToMany(mappedBy = "contacts")
     private List<Groups> groups;
 
-    public Contact(Integer id, String firstName, String lastName, String email, List<Groups> groups) {
+    @ManyToMany(mappedBy = "contacts")
+    private List<Phone> phones;
+
+    public Contact(Integer id, String firstName, String lastName, String email, List<Groups> groups, List<Phone> phones) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.groups = groups;
+        this.phones = phones;
     }
 
     public Contact() {
@@ -63,5 +67,21 @@ public class Contact {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public List<Groups> getGroups() {
+        return groups;
+    }
+
+    public void setGroups(List<Groups> groups) {
+        this.groups = groups;
+    }
+
+    public List<Phone> getPhones() {
+        return phones;
+    }
+
+    public void setPhones(List<Phone> phones) {
+        this.phones = phones;
     }
 }
