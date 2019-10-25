@@ -7,6 +7,8 @@ out/
 .idea
 *.iml
 *.ipr
+*.class
+*.xml
 *.iws
 .project
 .settings

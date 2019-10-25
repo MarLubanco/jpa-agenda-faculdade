@@ -37,6 +37,13 @@ public class Contact {
     public Contact() {
     }
 
+    public Contact(Integer id, String nome, String sobrenome, String email) {
+        this.id = id;
+        this.firstName = nome;
+        this.lastName = sobrenome;
+        this.email = email;
+    }
+
     public Integer getId() {
         return id;
     }
