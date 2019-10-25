@@ -1,3 +1,4 @@
+import com.sun.xml.bind.v2.runtime.output.SAXOutput;
 import entities.Contact;
 import entities.Product;
 import service.ContactService;
@@ -12,7 +13,8 @@ public class Main {
 
     public static void menu() {
         System.out.println("AGENDA ELETRONICA" +
-                "1 - Salvar novo contato"
+                "1 - Salvar novo contato" +
+                "2 - Listar contatos"
         );
     }
 
@@ -39,6 +41,19 @@ public class Main {
                     String email = scanner.next();
                     Contact contact = new Contact(1,nome, sobrenome, email);
                     contactService.salvarNovoContato(contact, em);
+                    break;
+                case 2:
+                    System.out.println("CONTATOS EXISTESTE");
+                    System.out.println("-".repeat(50));
+                    contactService.findAllContatos(em)
+                            .forEach(contato -> System.out.println(contato.toString()));
+                    break;
+                case 3:
+                    System.out.println("Deletar contato: ");
+                    System.out.println("Digite o id do contato: ");
+                    int id = scanner.nextInt();
+                    contactService.deletarContato(id, em);
+                    break;
                 default:
                     System.out.println("FIM");
             }

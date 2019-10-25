@@ -3,6 +3,7 @@ package service;
 import entities.Contact;
 
 import javax.persistence.EntityManager;
+import java.util.List;
 
 public class ContactService {
 
@@ -47,5 +48,9 @@ public class ContactService {
        } catch (Exception e) {
            e.printStackTrace();
        }
+    }
+
+    public List<Contact> findAllContatos(EntityManager entityManager) {
+        return entityManager.createQuery("select * from contato", Contact.class).getResultList();
     }
 }

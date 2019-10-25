@@ -6,7 +6,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import java.util.List;
 
-@Entity
+@Entity(name = "contato")
 public class Contact {
 
     @Id
@@ -90,5 +90,16 @@ public class Contact {
 
     public void setPhones(List<Phone> phones) {
         this.phones = phones;
+    }
+
+    @Override
+    public String toString() {
+        return "Contact - " +
+                " id : " + id +
+                " firstName: '" + firstName + '\'' +
+                " lastName: '" + lastName + '\'' +
+                " email:'" + email + '\'' +
+                " groups:" + groups +
+                " phones:" + phones;
     }
 }
