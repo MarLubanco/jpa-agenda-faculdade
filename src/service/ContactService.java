@@ -3,6 +3,7 @@ package service;
 import entities.Contact;
 
 import javax.persistence.EntityManager;
+import java.sql.SQLException;
 import java.util.List;
 
 public class ContactService {
@@ -51,6 +52,12 @@ public class ContactService {
     }
 
     public List<Contact> findAllContatos(EntityManager entityManager) {
-        return entityManager.createQuery("select * from contato", Contact.class).getResultList();
+        return entityManager.createQuery("select c from Contato c", Contact.class).getResultList();
+    }
+
+    public List<Contact> findContactByName(String nome, EntityManager entityManager) throws SQLException {
+        return entityManager.createQuery("select c from Contato c where c.firstName = :nome", Contact.class)
+                .setParameter("nome", nome)
+                .getResultList();
     }
 }
